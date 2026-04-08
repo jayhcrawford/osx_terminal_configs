@@ -1,6 +1,5 @@
 local wezterm = require 'wezterm'
 
-
 local config = wezterm.config_builder()
 
 local is_windows = wezterm.target_triple:find("windows") ~= nil
@@ -40,19 +39,30 @@ wezterm.on('gui-startup', function(cmd)
 -------------------------------------------------
 -- TAB 3 (PROJECT LAYOUT)
 -------------------------------------------------
+
+
+local pwsh = is_windows
+  and { "pwsh.exe" }
+  or { "/usr/local/bin/pwsh" }
+
+-------------------------------------------------
+-- TAB (project)
+-------------------------------------------------
 local tab3, root = window:spawn_tab({
-  args = { "pwsh.exe" }, -- 👈 THIS is the key
+  args = pwsh,
 })
 tab3:set_title("🚀 project")
 
+-------------------------------------------------
 -- Split into top/bottom (both pwsh)
+-------------------------------------------------
 local bottom = root:split({
   direction = "Bottom",
   size = 0.3,
-  args = { "pwsh.exe" }, -- 👈 ensure bottom is pwsh too
+  args = pwsh,
 })
 
-  local is_windows = wezterm.target_triple:find("windows") ~= nil
+
 end)
 
 -- assign values TO config
