@@ -21,6 +21,9 @@ wezterm.on('gui-startup', function(cmd)
 
   tab1:set_title("😊 nvim")
 
+  -------------------------------------------------
+  -- TAB 2 (pwsh)
+  -------------------------------------------------
   local tab2, pane2
 
   if is_windows then
@@ -33,6 +36,23 @@ wezterm.on('gui-startup', function(cmd)
   end
 
   tab2:set_title("🎉 pwsh")
+
+-------------------------------------------------
+-- TAB 3 (PROJECT LAYOUT)
+-------------------------------------------------
+local tab3, root = window:spawn_tab({
+  args = { "pwsh.exe" }, -- 👈 THIS is the key
+})
+tab3:set_title("🚀 project")
+
+-- Split into top/bottom (both pwsh)
+local bottom = root:split({
+  direction = "Bottom",
+  size = 0.3,
+  args = { "pwsh.exe" }, -- 👈 ensure bottom is pwsh too
+})
+
+  local is_windows = wezterm.target_triple:find("windows") ~= nil
 end)
 
 -- assign values TO config
@@ -50,5 +70,7 @@ end
 config.window_close_confirmation = 'NeverPrompt'
 
 config.color_scheme = 'Aci (Gogh)'
+
+local wezterm = require("wezterm")
 
 return config
