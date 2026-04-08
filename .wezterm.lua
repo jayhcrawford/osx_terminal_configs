@@ -20,7 +20,10 @@ wezterm.on('gui-startup', function(cmd)
   tab2:set_title("🎉 pwsh")   -- title + party popper icon
 end)
 
+-- the annoying window that always asks if I'm sure
+
 return {
+  window_close_confirmation = 'NeverPrompt',
   font_size = 18,
   initial_cols = 80, 
   initial_rows = 24,
