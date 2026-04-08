@@ -15,6 +15,7 @@ wezterm.on('gui-startup', function(cmd)
 end)
 
 -- assign values TO config
+config.window_close_confirmation = 'NeverPrompt'
 config.font_size = 18
 config.initial_cols = 80
 config.initial_rows = 24
