@@ -73,7 +73,7 @@ if target:find("windows") then
   config.initial_rows = 40
 else
   config.font_size = 18   -- larger on macOS/Linux
-  config.initial_cols = 80
+  config.initial_cols = 110
   config.initial_rows = 24
 end
 
